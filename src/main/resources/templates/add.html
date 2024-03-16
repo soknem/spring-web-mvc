@@ -5,9 +5,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-
 <h1 class="text-2xl font-bold mb-4">Add Todo</h1>
-
 <form th:action="@{/todo/new}" method="post">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="task">Task</label>
@@ -33,6 +31,5 @@
 </form>
 
 </body>
-<!-- Include Alpine.js from CDN for interactivity -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@^3.0" defer></script>
 </html>

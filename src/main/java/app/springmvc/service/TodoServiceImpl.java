@@ -59,6 +59,4 @@ public class TodoServiceImpl implements TodoService {
     public List<Todo> searchTodosByTaskContainingAndIsDone(String task, Boolean isDone) {
         return todoRepository.searchTodosByTaskContainingAndIsDone(task, isDone);
     }
-
-
 }

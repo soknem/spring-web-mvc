@@ -3,7 +3,8 @@ package app.springmvc.repository;
 import app.springmvc.model.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
@@ -31,9 +32,16 @@ public class TodoRepositoryImpl implements TodoRepository {
         return todoOptional.orElse(null);
     }
 
+    public static LocalDateTime formatLocalDateTime(LocalDateTime dateTime) {
+        String pattern="dd-MM-yyyy HH:mm:ss";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        String formattedDateTimeString = dateTime.format(formatter);
+        return LocalDateTime.parse(formattedDateTimeString, formatter);
+    }
     @Override
     public void addTodo(Todo todo) {
         todo.setId(idGenerator.getAndIncrement());
+        todo.setCreatedAt(formatLocalDateTime(LocalDateTime.now()));
         todoList.add(todo);
     }
 
@@ -41,6 +49,8 @@ public class TodoRepositoryImpl implements TodoRepository {
     public void updateTodo(Todo todo) {
         for (int i = 0; i < todoList.size(); i++) {
             if (todoList.get(i).getId().equals(todo.getId())) {
+                LocalDateTime createdAt = todoList.get(i).getCreatedAt();
+                todo.setCreatedAt(createdAt);
                 todoList.set(i, todo);
                 break;
             }
@@ -50,13 +60,6 @@ public class TodoRepositoryImpl implements TodoRepository {
     @Override
     public void deleteTodoById(Long id) {
         todoList.removeIf(todo -> todo.getId().equals(id));
-    }
-
-    @Override
-    public List<Todo> searchTodos(String task, boolean isDone) {
-        return todoList.stream()
-                .filter(todo -> todo.getTask().equals(task) && todo.isDone() == isDone)
-                .collect(Collectors.toList());
     }
 
     @Override
