@@ -42,16 +42,23 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<Todo> searchTodosByTask(String task) {
-        return null;
+        return todoRepository.searchTodosByTask(task);
     }
 
     @Override
     public List<Todo> searchTodosByIsDone(Boolean isDone) {
-        return null;
+        return todoRepository.searchTodosByIsDone(isDone);
     }
 
     @Override
-    public List<Todo> searchTodos(String task, boolean isDone) {
-        return todoRepository.searchTodos(task, isDone);
+    public List<Todo> searchTodosByTaskContaining(String task) {
+        return todoRepository.searchTodosByTaskContaining(task);
     }
+
+    @Override
+    public List<Todo> searchTodosByTaskContainingAndIsDone(String task, Boolean isDone) {
+        return todoRepository.searchTodosByTaskContainingAndIsDone(task, isDone);
+    }
+
+
 }

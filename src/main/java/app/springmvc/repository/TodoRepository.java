@@ -9,4 +9,12 @@ public interface TodoRepository {
     void updateTodo(Todo todo);
     void deleteTodoById(Long id);
     List<Todo> searchTodos(String task, boolean isDone);
+
+    List<Todo> searchTodosByTask(String task);
+
+    List<Todo> searchTodosByIsDone(Boolean isDone);
+
+    List<Todo> searchTodosByTaskContaining(String task);
+
+    List<Todo> searchTodosByTaskContainingAndIsDone(String task, Boolean isDone);
 }

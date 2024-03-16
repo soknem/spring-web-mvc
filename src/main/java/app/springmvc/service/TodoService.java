@@ -21,5 +21,7 @@ public interface TodoService {
 
     List<Todo> searchTodosByIsDone(Boolean isDone);
 
-    List<Todo> searchTodos(String task, boolean isDone);
+    List<Todo> searchTodosByTaskContaining(String task);
+
+    List<Todo> searchTodosByTaskContainingAndIsDone(String task, Boolean isDone);
 }

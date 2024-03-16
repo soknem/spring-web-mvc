@@ -3,10 +3,38 @@
 <head>
     <title>Todo List</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleSearchButton() {
+            var button = document.getElementById("searchButton");
+            var form = document.getElementById("searchForm");
+            if (button.innerText === "Search") {
+                if (formSubmitted) {
+                    button.innerText = "Back";
+                } else {
+                    form.submit();
+                    formSubmitted = true;
+                }
+            } else {
+                button.innerText = "Search";
+                formSubmitted = false;
+            }
+        }
+
+        var formSubmitted = false;
+    </script>
 </head>
 <body>
 <h1 class="text-2xl font-bold mb-4 flex justify-center w-full bg-yellow-200">Todo List</h1>
-<div class="flex justify-center mb-4">
+<div class="flex justify-between items-center mb-4">
+    <form id="searchForm" class="flex" action="/todo/search" method="get">
+        <input type="text" name="task" placeholder="Search by task" class="mr-2 px-2 py-1 border border-gray-300 rounded">
+        <select name="isDone" class="mr-2 px-2 py-1 border border-gray-300 rounded">
+            <option value="">All</option>
+            <option value="true">Done</option>
+            <option value="false">Not Done</option>
+        </select>
+        <button id="searchButton" type="button" onclick="toggleSearchButton()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+    </form>
     <a href="/todo/new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Add New Todo
     </a>
@@ -42,6 +70,5 @@
     </tr>
     </tbody>
 </table>
-
 </body>
 </html>

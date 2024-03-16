@@ -23,10 +23,7 @@
     </div>
     <div class="mb-4">
         <label class="ml-2" for="isDone">IsDone</label>
-        <select id="isDone" name="isDone" class="form-select">
-            <option value="true" th:selected="${isDone == 'true'}">Done</option>
-            <option value="false" th:selected="${isDone == 'false'}">Not yet</option>
-        </select>
+        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" id="isDone" name="isDone" th:checked="*{isDone}">
     </div>
 
 

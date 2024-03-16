@@ -1,5 +1,4 @@
 package app.springmvc.controller;
-
 import app.springmvc.model.Todo;
 import app.springmvc.service.TodoService;
 import org.springframework.stereotype.Controller;
@@ -7,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
@@ -61,14 +59,20 @@ public class TodoController {
                               @RequestParam(required = false) Boolean isDone,
                               Model model) {
         List<Todo> todos;
-        if (task != null && !task.isEmpty()) {
-            todos = todoService.searchTodosByTask(task);
-        } else if (isDone != null) {
-            todos = todoService.searchTodosByIsDone(isDone);
+        if (task == null || task.isEmpty()) {
+            if (isDone != null) {
+                todos = todoService.searchTodosByIsDone(isDone);
+            } else {
+                todos = todoService.getAllTodos();
+            }
         } else {
-            todos = todoService.getAllTodos();
+            if (isDone != null) {
+                todos = todoService.searchTodosByTaskContainingAndIsDone(task, isDone);
+            } else {
+                todos = todoService.searchTodosByTaskContaining(task);
+            }
         }
         model.addAttribute("todos", todos);
-        return "todo-list";
+        return "index"; // Return to the main todo page after searching
     }
 }
