@@ -4,31 +4,33 @@
     <title>Add Todo</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1 class="text-2xl font-bold mb-4">Add Todo</h1>
-<form th:action="@{/todo/new}" method="post">
-    <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="task">Task</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               id="task" type="text" placeholder="Enter task" name="task" required>
-    </div>
-    <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Description</label>
-        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="description" placeholder="Enter description" name="description" required></textarea>
-    </div>
-    <div class="mb-4">
-        <label class="ml-2" for="isDone">IsDone</label>
-        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" id="isDone" name="isDone" th:value="true">
-    </div>
+<body class="w-full h-screen bg-gray-50 flex flex-col justify-center items-center mx-auto">
+    <div class="w-[50%] bg-pruple-100 flex flex-col justify-center items-center p-4 rounded-[10px] border border-blue-200">
+        <h1 class="text-2xl font-bold mb-4">Add Todo</h1>
+        <form th:action="@{/todo/new}" method="post" class="w-full h-full">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="task">Task</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="task" type="text" placeholder="Enter task" name="task" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Description</label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          id="description" placeholder="Enter description" name="description" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="ml-2" for="isDone">IsDone</label>
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" id="isDone" name="isDone" th:value="true">
+            </div>
 
-    <div class="flex items-center justify-between">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-            Add Todo
-        </button>
-        <a href="/todo" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Cancel</a>
+            <div class="flex items-center justify-center space-x-20">
+                <a href="/todo" class="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancel</a>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Add Todo
+                </button>
+            </div>
+        </form  >
     </div>
-</form>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@^3.0" defer></script>
