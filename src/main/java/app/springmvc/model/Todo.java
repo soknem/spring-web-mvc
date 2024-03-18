@@ -14,6 +14,6 @@ public class Todo {
     private Long id;
     private String task;
     private String description;
-    private boolean isDone;
+    private Boolean isDone;
     private LocalDateTime createdAt;
 }

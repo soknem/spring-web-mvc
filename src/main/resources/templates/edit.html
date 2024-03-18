@@ -23,7 +23,8 @@
         </div>
         <div class="mb-4">
             <label class="ml-2" for="isDone">IsDone</label>
-            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" id="isDone" name="isDone" th:checked="*{isDone}">
+            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" id="isDone" name="isDone" th:checked="*{isDone}" onclick="updateCheckbox()">
+            <input type="hidden" id="isDoneHidden" name="isDone" value="false">
         </div>
 
 

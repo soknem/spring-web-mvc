@@ -72,7 +72,8 @@ public class TodoRepositoryImpl implements TodoRepository {
     @Override
     public List<Todo> searchTodosByIsDone(Boolean isDone) {
         return todoList.stream()
-                .filter(todo -> todo.isDone() == isDone)
+                .filter(todo -> todo.getIsDone()
+                        == isDone)
                 .collect(Collectors.toList());
     }
 
@@ -86,7 +87,7 @@ public class TodoRepositoryImpl implements TodoRepository {
     @Override
     public List<Todo> searchTodosByTaskContainingAndIsDone(String task, Boolean isDone) {
         return todoList.stream()
-                .filter(todo -> todo.getTask().contains(task) && todo.isDone() == isDone)
+                .filter(todo -> todo.getTask().contains(task) && todo.getIsDone() == isDone)
                 .collect(Collectors.toList());
     }
 }
